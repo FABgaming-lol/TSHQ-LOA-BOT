@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Shadow Headquarters | Staff Bot Manual</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --premium-black: #050505;
+            --card-black: #0d0d0d;
+            --border-gray: #1a1a1a;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--premium-black);
+            color: #f8fafc;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .glass {
+            background: rgba(13, 13, 13, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-gray);
+        }
+
+        .command-box {
+            background: #000000;
+            border: 1px solid var(--border-gray);
+            border-left: 3px solid #3b82f6;
+            padding: 0.85rem 1.1rem;
+            border-radius: 0.75rem;
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-size: 0.9rem;
+            color: #60a5fa;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .command-box::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.03));
+            pointer-events: none;
+        }
+
+        .sidebar-link {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+
+        .sidebar-link:hover {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: var(--border-gray);
+            transform: translateX(4px);
+        }
+
+        .sidebar-link.active {
+            background: var(--accent-gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .premium-card {
+            background: var(--card-black);
+            border: 1px solid var(--border-gray);
+            transition: all 0.4s ease;
+        }
+
+        .premium-card:hover {
+            border-color: #3b82f655;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+            transform: translateY(-4px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--premium-black); }
+        ::-webkit-scrollbar-thumb { 
+            background: var(--border-gray); 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: #333; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .animate-float { animation: float 6s ease-in-out infinite; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Background Decoration -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
+        <div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-600/10 blur-[120px] rounded-full"></div>
+        <div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-600/10 blur-[120px] rounded-full"></div>
+    </div>
+
+    <!-- Mobile Navigation Toggle -->
+    <div class="lg:hidden fixed top-4 right-4 z-50">
+        <button id="menuBtn" class="p-3 bg-black border border-white/10 rounded-xl text-white shadow-2xl transition-transform active:scale-95">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+    </div>
+
+    <div class="flex">
+        <!-- Sidebar Navigation -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 w-72 glass border-r border-white/5 z-40 transform -translate-x-full lg:translate-x-0 transition-transform duration-500 ease-in-out">
+            <div class="p-6 h-full flex flex-col">
+                <div class="flex items-center gap-3 mb-10">
+                    <div class="w-12 h-12 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg animate-float">
+                        <i class="fas fa-robot text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-extrabold text-lg leading-tight tracking-tight">Team Shadow</h1>
+                        <p class="text-[10px] text-blue-400 font-bold tracking-[0.2em] uppercase">Headquarters</p>
+                    </div>
+                </div>
+
+                <nav class="space-y-2 flex-1 overflow-y-auto">
+                    <p class="text-[11px] font-black text-white/20 uppercase tracking-[0.2em] mb-4 mt-6">Navigation</p>
+                    <a href="#intro" class="sidebar-link flex items-center gap-3 px-5 py-3.5 rounded-xl text-sm font-medium">
+                        <i class="fas fa-terminal w-5 text-center opacity-70"></i> Prefix & Basics
+                    </a>
+                    <a href="#announcements" class="sidebar-link flex items-center gap-3 px-5 py-3.5 rounded-xl text-sm font-medium">
+                        <i class="fas fa-bullhorn w-5 text-center opacity-70"></i> Announcements
+                    </a>
+                    <a href="#moderation" class="sidebar-link flex items-center gap-3 px-5 py-3.5 rounded-xl text-sm font-medium">
+                        <i class="fas fa-shield-halved w-5 text-center opacity-70"></i> Moderation
+                    </a>
+                    <a href="#tickets" class="sidebar-link flex items-center gap-3 px-5 py-3.5 rounded-xl text-sm font-medium">
+                        <i class="fas fa-ticket w-5 text-center opacity-70"></i> Ticket System
+                    </a>
+                    <a href="#loa" class="sidebar-link flex items-center gap-3 px-5 py-3.5 rounded-xl text-sm font-medium">
+                        <i class="fas fa-palm-tree w-5 text-center opacity-70"></i> Leave of Absence
+                    </a>
+                    <a href="#logging" class="sidebar-link flex items-center gap-3 px-5 py-3.5 rounded-xl text-sm font-medium">
+                        <i class="fas fa-folder-open w-5 text-center opacity-70"></i> Logging Locations
+                    </a>
+                    <a href="#troubleshooting" class="sidebar-link flex items-center gap-3 px-5 py-3.5 rounded-xl text-sm font-medium">
+                        <i class="fas fa-circle-exclamation w-5 text-center opacity-70"></i> Troubleshooting
+                    </a>
+                </nav>
+
+                <div class="mt-auto pt-6">
+                    <div class="bg-white/[0.02] border border-white/5 p-5 rounded-2xl">
+                        <p class="text-[10px] font-bold text-white/40 uppercase tracking-widest">Manual v2.1</p>
+                        <p class="text-xs text-blue-500/60 mt-1 font-semibold italic">Authorized Personnel Only</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 lg:ml-72 min-h-screen px-6 md:px-12 py-16">
+            <div class="max-w-5xl mx-auto">
+                
+                <!-- Header -->
+                <header id="intro" class="mb-20 section-reveal">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 text-blue-400 rounded-full text-[11px] font-bold uppercase tracking-widest mb-6">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+                        Official Documentation
+                    </div>
+                    <h2 class="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-none">🤖 Staff Bot <span class="gradient-text">Manual</span></h2>
+                    
+                    <div class="premium-card p-1 rounded-3xl group">
+                        <div class="bg-black p-8 rounded-[1.4rem] flex flex-col md:flex-row items-center gap-8">
+                            <div class="w-20 h-20 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl transition-transform group-hover:rotate-12">
+                                <i class="fas fa-terminal text-3xl text-white"></i>
+                            </div>
+                            <div class="text-center md:text-left">
+                                <h3 class="text-2xl font-extrabold mb-2 tracking-tight">Bot Prefix</h3>
+                                <p class="text-white/60 text-lg">All commands start with <span class="text-blue-400 font-mono font-black bg-blue-400/10 px-3 py-1 rounded-lg ml-1 border border-blue-400/20">!</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Section 1: Announcements -->
+                <section id="announcements" class="mb-20 scroll-mt-24 section-reveal">
+                    <div class="flex items-center justify-between mb-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl">📢</div>
+                            <h3 class="text-3xl font-extrabold tracking-tight">1. Announcements</h3>
+                        </div>
+                        <span class="text-[10px] font-black bg-red-500/10 text-red-500 border border-red-500/30 px-3 py-1.5 rounded-full uppercase tracking-widest">Managers Only</span>
+                    </div>
+                    <div class="premium-card p-8 md:p-10 rounded-[2rem]">
+                        <p class="text-white/50 mb-10 text-lg leading-relaxed">Send an official message to any channel using the bot to keep the community informed.</p>
+                        
+                        <div class="grid gap-8">
+                            <div>
+                                <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em] mb-4">Command</h4>
+                                <div class="command-box">!announce #channel [Message]</div>
+                            </div>
+                            <div class="p-6 bg-white/[0.02] border border-white/5 rounded-2xl">
+                                <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em] mb-3">Example Usage</h4>
+                                <p class="text-white/80 font-medium italic">!announce #general Hello everyone, maintenance is starting soon!</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 2: Moderation -->
+                <section id="moderation" class="mb-20 scroll-mt-24 section-reveal">
+                    <div class="flex items-center justify-between mb-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl">🛡️</div>
+                            <h3 class="text-3xl font-extrabold tracking-tight">2. Moderation & Auto-Mod</h3>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="text-[10px] font-black bg-blue-500/10 text-blue-400 border border-blue-400/30 px-3 py-1.5 rounded-full uppercase tracking-widest">Moderators</span>
+                            <span class="text-[10px] font-black bg-purple-500/10 text-purple-400 border border-purple-400/30 px-3 py-1.5 rounded-full uppercase tracking-widest">Managers</span>
+                        </div>
+                    </div>
+                    <div class="premium-card p-1 rounded-[2rem] overflow-hidden">
+                        <div class="bg-black p-8 md:p-12 rounded-[1.9rem] grid lg:grid-cols-2 gap-12">
+                            <div class="space-y-10">
+                                <h4 class="flex items-center gap-3 text-xl font-black text-white">
+                                    <span class="w-1.5 h-6 bg-blue-500 rounded-full"></span> Manual Commands
+                                </h4>
+                                
+                                <div class="space-y-6">
+                                    <div>
+                                        <p class="text-xs font-bold text-white/40 mb-2 uppercase tracking-widest">Kick User</p>
+                                        <div class="command-box">!kick @User [Reason]</div>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-bold text-white/40 mb-2 uppercase tracking-widest">Ban User (Supports IDs)</p>
+                                        <div class="command-box">!ban @User [Reason]</div>
+                                        <p class="text-[11px] text-white/40 mt-2 italic flex gap-2"><i class="fas fa-info-circle text-blue-500"></i> You can ban a User ID even if they are not in the server.</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-bold text-white/40 mb-2 uppercase tracking-widest">Timeout / Mute</p>
+                                        <div class="command-box">!timeout @User [Minutes] [Reason]</div>
+                                        <p class="text-[11px] text-white/40 mt-2">Example: <span class="text-white/60">!timeout @User 60 Spamming</span> (1 hour mute)</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-bold text-white/40 mb-2 uppercase tracking-widest">Purge Messages</p>
+                                        <div class="command-box">!purge [Amount]</div>
+                                        <p class="text-[11px] text-white/40 mt-2">Example: <span class="text-white/60">!purge 20</span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-10">
+                                <h4 class="flex items-center gap-3 text-xl font-black text-white">
+                                    <span class="w-1.5 h-6 bg-purple-500 rounded-full"></span> Auto-Moderation
+                                </h4>
+                                <div class="bg-white/[0.03] border border-white/5 rounded-3xl p-8 space-y-8">
+                                    <p class="text-white/60 text-sm leading-relaxed">The bot automatically watches chat for <span class="text-red-400 font-bold border-b border-red-400/30">Blacklisted Words</span>.</p>
+                                    
+                                    <div class="space-y-6">
+                                        <div class="flex gap-4">
+                                            <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0">
+                                                <i class="fas fa-trash-alt text-red-400"></i>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm font-bold text-white">Action</p>
+                                                <p class="text-xs text-white/40 leading-relaxed">Deletes the message immediately and warns the user via DM/Logs.</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex gap-4">
+                                            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
+                                                <i class="fas fa-clipboard-list text-blue-400"></i>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm font-bold text-white">Logs</p>
+                                                <p class="text-xs text-white/40 leading-relaxed">Sends a detailed alert to the Server Logs channel.</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex gap-4">
+                                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0">
+                                                <i class="fas fa-crown text-amber-400"></i>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm font-bold text-white">Immunity</p>
+                                                <p class="text-xs text-white/40 leading-relaxed">Moderators and Managers can say these words without punishment.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3: Tickets -->
+                <section id="tickets" class="mb-20 scroll-mt-24 section-reveal">
+                    <div class="flex items-center justify-between mb-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl">🎫</div>
+                            <h3 class="text-3xl font-extrabold tracking-tight">3. Ticket System</h3>
+                        </div>
+                    </div>
+                    <div class="premium-card p-8 md:p-12 rounded-[2rem] border-l-4 border-l-amber-500">
+                        <div class="inline-flex items-center gap-3 px-5 py-2.5 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-2xl mb-10">
+                            <i class="fas fa-file-export"></i>
+                            <p class="text-sm font-bold">Transcripts are now saved automatically</p>
+                        </div>
+
+                        <div class="grid lg:grid-cols-2 gap-12">
+                            <div class="space-y-10">
+                                <div>
+                                    <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em] mb-4 flex items-center gap-2">
+                                        <i class="fas fa-gear"></i> Setup <span class="text-red-500">Admin Only</span>
+                                    </h4>
+                                    <div class="command-box">!setup_tickets</div>
+                                    <p class="text-[11px] text-white/40 mt-3 italic underline decoration-white/10 underline-offset-4">(Spawns the "Open Ticket" panel in current channel)</p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em] mb-4">Managing Tickets</h4>
+                                    <div class="space-y-3">
+                                        <div class="command-box">!ticket_add @User</div>
+                                        <div class="command-box">!ticket_remove @User</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white/[0.03] border border-white/5 p-8 rounded-[1.8rem] relative overflow-hidden group">
+                                <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em] mb-6">Closing a Ticket</h4>
+                                <div class="space-y-6">
+                                    <button class="w-full bg-red-600/10 text-red-500 border border-red-500/20 px-6 py-4 rounded-2xl flex items-center justify-center gap-3 cursor-default font-black uppercase tracking-widest text-xs transition-all group-hover:bg-red-600 group-hover:text-white">
+                                        <i class="fas fa-lock"></i> Close Ticket
+                                    </button>
+                                    <p class="text-sm text-white/50 leading-relaxed text-center">
+                                        The bot will generate a transcript file and send it to the <span class="text-white font-bold">Ticket Logs</span> channel before deleting the ticket.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4: LOA -->
+                <section id="loa" class="mb-20 scroll-mt-24 section-reveal">
+                    <div class="flex items-center justify-between mb-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl">🌴</div>
+                            <h3 class="text-3xl font-extrabold tracking-tight">4. Leave of Absence (LOA)</h3>
+                        </div>
+                        <span class="text-[10px] font-black bg-red-500/10 text-red-500 border border-red-500/30 px-3 py-1.5 rounded-full uppercase tracking-widest">Managers Only</span>
+                    </div>
+                    <div class="premium-card p-8 md:p-12 rounded-[2rem] border-l-4 border-l-emerald-500">
+                        <div class="grid lg:grid-cols-2 gap-12">
+                            <div class="space-y-8">
+                                <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em]">Start a Leave</h4>
+                                <div class="command-box">!loa @User [Duration] [Reason]</div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-emerald-500/5 text-emerald-500 text-[10px] font-black px-4 py-2 rounded-xl border border-emerald-500/20">7d (Days)</span>
+                                    <span class="bg-emerald-500/5 text-emerald-500 text-[10px] font-black px-4 py-2 rounded-xl border border-emerald-500/20">2w (Weeks)</span>
+                                    <span class="bg-emerald-500/5 text-emerald-500 text-[10px] font-black px-4 py-2 rounded-xl border border-emerald-500/20">1m (Months)</span>
+                                </div>
+                            </div>
+                            <div class="space-y-8">
+                                <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em]">End a Leave Early</h4>
+                                <div class="command-box">!endloa @User</div>
+                                <div class="bg-emerald-500/5 border border-emerald-500/10 p-5 rounded-2xl flex gap-4 items-center">
+                                    <div class="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
+                                        <i class="fas fa-clock text-emerald-500 text-sm"></i>
+                                    </div>
+                                    <p class="text-xs text-white/50 leading-relaxed font-medium">
+                                        The bot automatically removes the role when time expires. No manual action required.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 5: Logging -->
+                <section id="logging" class="mb-20 scroll-mt-24 section-reveal">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl">📂</div>
+                        <h3 class="text-3xl font-extrabold tracking-tight">5. Logging Locations</h3>
+                    </div>
+                    <p class="text-white/40 mb-10 text-lg">The bot now splits logs into specialized channels for maximum organization.</p>
+                    
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="premium-card p-8 rounded-3xl border-b-4 border-b-blue-600/40">
+                            <div class="w-12 h-12 bg-blue-600/10 rounded-xl flex items-center justify-center mb-6">
+                                <i class="fas fa-shield-halved text-xl text-blue-500"></i>
+                            </div>
+                            <h4 class="text-lg font-black mb-3 tracking-tight">Moderation Logs</h4>
+                            <p class="text-xs text-white/40 leading-relaxed font-medium">Detailed reports of Bans, Kicks, Timeouts, and channel Purges.</p>
+                        </div>
+                        <div class="premium-card p-8 rounded-3xl border-b-4 border-b-amber-600/40">
+                            <div class="w-12 h-12 bg-amber-600/10 rounded-xl flex items-center justify-center mb-6">
+                                <i class="fas fa-ticket text-xl text-amber-500"></i>
+                            </div>
+                            <h4 class="text-lg font-black mb-3 tracking-tight">Ticket Logs</h4>
+                            <p class="text-xs text-white/40 leading-relaxed font-medium">Text-based transcripts, and all Open/Close alerts.</p>
+                        </div>
+                        <div class="premium-card p-8 rounded-3xl border-b-4 border-b-slate-600/40">
+                            <div class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-6">
+                                <i class="fas fa-server text-xl text-white/60"></i>
+                            </div>
+                            <h4 class="text-lg font-black mb-3 tracking-tight">Server Logs</h4>
+                            <p class="text-xs text-white/40 leading-relaxed font-medium">Auto-Mod warnings, message edits, join/leave events, and LOA updates.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: Troubleshooting -->
+                <section id="troubleshooting" class="mb-32 scroll-mt-24 section-reveal">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl">⚠️</div>
+                        <h3 class="text-3xl font-extrabold tracking-tight">Troubleshooting</h3>
+                    </div>
+                    
+                    <div class="grid gap-6">
+                        <div class="premium-card p-8 rounded-3xl group">
+                            <h4 class="text-xl font-black text-white mb-6 flex items-center gap-3">
+                                <span class="w-3 h-3 rounded-full bg-red-500 group-hover:scale-125 transition-transform"></span> "Permission Denied"?
+                            </h4>
+                            <div class="grid md:grid-cols-2 gap-8 pl-6">
+                                <div>
+                                    <p class="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-2">Announcements/LOA</p>
+                                    <p class="text-sm text-white/50 leading-relaxed font-medium">These commands are strictly restricted to the <span class="text-white font-bold">Managers</span> role only.</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-2">Moderation Action</p>
+                                    <p class="text-sm text-white/50 leading-relaxed font-medium">Ensure the <span class="text-white font-bold">Bot's Role</span> is physically higher in the role hierarchy than the target user.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="premium-card p-8 rounded-3xl group">
+                            <h4 class="text-xl font-black text-white mb-6 flex items-center gap-3">
+                                <span class="w-3 h-3 rounded-full bg-red-500 group-hover:scale-125 transition-transform"></span> Auto-Mod didn't delete my message?
+                            </h4>
+                            <div class="pl-6">
+                                <p class="text-sm text-white/50 leading-relaxed font-medium">
+                                    All staff members are <span class="text-amber-500 font-bold italic">immune</span> to the blacklisted word filter to prevent accidental mutes. To test, use a non-staff test account.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <footer class="text-center pb-20 border-t border-white/5 pt-16">
+                    <div class="flex justify-center gap-6 mb-8 text-white/20">
+                        <i class="fab fa-discord hover:text-blue-500 transition-colors cursor-pointer"></i>
+                        <i class="fas fa-shield-cat hover:text-purple-500 transition-colors cursor-pointer"></i>
+                    </div>
+                    <p class="text-[11px] font-black text-white/20 uppercase tracking-[0.3em]">&copy; 2024 Team Shadow Headquarters. Internal Use Only.</p>
+                </footer>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+            const icon = menuBtn.querySelector('i');
+            if (sidebar.classList.contains('-translate-x-full')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Close sidebar when clicking a link on mobile
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 1024) {
+                    sidebar.classList.add('-translate-x-full');
+                    const icon = menuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // Reveal animations on scroll
+        const revealSections = () => {
+            const reveals = document.querySelectorAll('.section-reveal');
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const revealTop = reveal.getBoundingClientRect().top;
+                const revealPoint = 100;
+                if (revealTop < windowHeight - revealPoint) {
+                    reveal.classList.add('visible');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealSections);
+        window.addEventListener('load', revealSections);
+
+        // Active link highlighting & Smooth Scrolling
+        const sections = document.querySelectorAll('section, header');
+        const navLinks = document.querySelectorAll('.sidebar-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
