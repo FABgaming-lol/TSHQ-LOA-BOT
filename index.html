@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Shadow Headquarters | Staff Bot Manual</title>
+    <title>Team Shadow Headquarters | Official Staff Bot Manual</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -41,6 +41,7 @@
             color: #60a5fa;
             position: relative;
             overflow: hidden;
+            margin-bottom: 0.5rem;
         }
 
         .command-box::after {
@@ -135,43 +136,46 @@
             <div class="p-6 h-full flex flex-col">
                 <div class="flex items-center gap-3 mb-10">
                     <div class="w-12 h-12 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg animate-float">
-                        <i class="fas fa-robot text-white text-xl"></i>
+                        <i class="fas fa-shield-cat text-white text-xl"></i>
                     </div>
                     <div>
                         <h1 class="font-extrabold text-lg leading-tight tracking-tight">Team Shadow</h1>
-                        <p class="text-[10px] text-blue-400 font-bold tracking-[0.2em] uppercase">Headquarters</p>
+                        <p class="text-[10px] text-blue-400 font-bold tracking-[0.2em] uppercase">Staff Manual</p>
                     </div>
                 </div>
 
                 <nav class="space-y-2 flex-1 overflow-y-auto">
-                    <p class="text-[11px] font-black text-white/20 uppercase tracking-[0.2em] mb-4 mt-6">Navigation</p>
-                    <a href="#intro" class="sidebar-link flex items-center gap-3 px-5 py-3.5 rounded-xl text-sm font-medium">
-                        <i class="fas fa-terminal w-5 text-center opacity-70"></i> Setup & Slash Commands
+                    <p class="text-[11px] font-black text-white/20 uppercase tracking-[0.2em] mb-4 mt-6">Documentation</p>
+                    <a href="#permissions" class="sidebar-link flex items-center gap-3 px-5 py-3.5 rounded-xl text-sm font-medium">
+                        <i class="fas fa-user-shield w-5 text-center opacity-70"></i> 1. Permissions
                     </a>
-                    <a href="#announcements" class="sidebar-link flex items-center gap-3 px-5 py-3.5 rounded-xl text-sm font-medium">
-                        <i class="fas fa-bullhorn w-5 text-center opacity-70"></i> Announcements
-                    </a>
-                    <a href="#loa" class="sidebar-link flex items-center gap-3 px-5 py-3.5 rounded-xl text-sm font-medium">
-                        <i class="fas fa-palm-tree w-5 text-center opacity-70"></i> Leave of Absence
+                    <a href="#warnings" class="sidebar-link flex items-center gap-3 px-5 py-3.5 rounded-xl text-sm font-medium">
+                        <i class="fas fa-triangle-exclamation w-5 text-center opacity-70"></i> 2. Warning System
                     </a>
                     <a href="#moderation" class="sidebar-link flex items-center gap-3 px-5 py-3.5 rounded-xl text-sm font-medium">
-                        <i class="fas fa-shield-halved w-5 text-center opacity-70"></i> Moderation Tools
+                        <i class="fas fa-hammer w-5 text-center opacity-70"></i> 3. Moderation Tools
                     </a>
                     <a href="#tickets" class="sidebar-link flex items-center gap-3 px-5 py-3.5 rounded-xl text-sm font-medium">
-                        <i class="fas fa-ticket w-5 text-center opacity-70"></i> Ticket System
+                        <i class="fas fa-ticket w-5 text-center opacity-70"></i> 4. Ticket System
+                    </a>
+                    <a href="#loa" class="sidebar-link flex items-center gap-3 px-5 py-3.5 rounded-xl text-sm font-medium">
+                        <i class="fas fa-calendar-day w-5 text-center opacity-70"></i> 5. Leave of Absence
+                    </a>
+                    <a href="#announcements" class="sidebar-link flex items-center gap-3 px-5 py-3.5 rounded-xl text-sm font-medium">
+                        <i class="fas fa-bullhorn w-5 text-center opacity-70"></i> 6. Announcements
                     </a>
                     <a href="#logging" class="sidebar-link flex items-center gap-3 px-5 py-3.5 rounded-xl text-sm font-medium">
-                        <i class="fas fa-folder-open w-5 text-center opacity-70"></i> Logging System
+                        <i class="fas fa-list-ul w-5 text-center opacity-70"></i> 7. Logging Channels
                     </a>
                     <a href="#troubleshooting" class="sidebar-link flex items-center gap-3 px-5 py-3.5 rounded-xl text-sm font-medium">
-                        <i class="fas fa-circle-exclamation w-5 text-center opacity-70"></i> Troubleshooting
+                        <i class="fas fa-circle-question w-5 text-center opacity-70"></i> Troubleshooting
                     </a>
                 </nav>
 
                 <div class="mt-auto pt-6">
                     <div class="bg-white/[0.02] border border-white/5 p-5 rounded-2xl">
-                        <p class="text-[10px] font-bold text-white/40 uppercase tracking-widest">Manual v2.1</p>
-                        <p class="text-xs text-blue-500/60 mt-1 font-semibold italic">Authorized Personnel Only</p>
+                        <p class="text-[10px] font-bold text-white/40 uppercase tracking-widest">Version 3.0</p>
+                        <p class="text-xs text-blue-500/60 mt-1 font-semibold italic">Authorized Access Only</p>
                     </div>
                 </div>
             </div>
@@ -182,242 +186,227 @@
             <div class="max-w-5xl mx-auto">
                 
                 <!-- Header -->
-                <header id="intro" class="mb-20 section-reveal">
+                <header id="permissions" class="mb-20 section-reveal">
                     <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 text-blue-400 rounded-full text-[11px] font-bold uppercase tracking-widest mb-6">
                         <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
                         Official Documentation
                     </div>
-                    <h2 class="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-none">🤖 Staff Bot <span class="gradient-text">Manual</span> <span class="text-2xl align-middle text-white/30">(Slash Version)</span></h2>
-                    <p class="text-white/50 text-xl mt-6 max-w-2xl leading-relaxed">This bot handles LOAs, Moderation, Support Tickets, and Announcements. Usage is simple: Type <span class="text-blue-400 font-mono bg-blue-400/10 px-2 py-0.5 rounded border border-blue-400/20">/</span> and click the command from the menu.</p>
+                    <h2 class="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-none">🤖 Official <span class="gradient-text">Staff Bot</span> Manual</h2>
+                    
+                    <div class="bg-blue-600/5 border border-blue-600/20 p-6 rounded-2xl mb-12">
+                        <p class="text-white/80 text-lg flex items-center gap-3">
+                            <i class="fas fa-terminal text-blue-500"></i>
+                            Usage: All commands use <span class="text-blue-400 font-bold underline">Slash Commands</span>. Type <span class="bg-black/40 px-2 py-1 rounded font-mono border border-white/10">/</span> and select the command from the menu.
+                        </p>
+                    </div>
 
-                    <div class="mt-12 grid md:grid-cols-2 gap-6">
-                        <div class="premium-card p-8 rounded-3xl border-l-4 border-l-amber-500 bg-amber-500/[0.02]">
-                            <h3 class="text-xl font-black mb-4 flex items-center gap-3">
-                                <i class="fas fa-sync text-amber-500"></i> FIRST TIME SETUP
-                            </h3>
-                            <p class="text-sm text-white/60 mb-6 leading-relaxed">If you type <span class="font-mono text-white">/</span> and don't see the bot's commands, follow these steps:</p>
-                            <ol class="space-y-3">
-                                <li class="flex gap-3 text-sm text-white/80"><span class="w-5 h-5 flex items-center justify-center bg-white/10 rounded-full text-[10px] shrink-0">1</span> Type <span class="text-blue-400 font-mono">!sync</span> in any chat channel.</li>
-                                <li class="flex gap-3 text-sm text-white/80"><span class="w-5 h-5 flex items-center justify-center bg-white/10 rounded-full text-[10px] shrink-0">2</span> Wait for the bot to reply "✅ Synced!".</li>
-                                <li class="flex gap-3 text-sm text-white/80"><span class="w-5 h-5 flex items-center justify-center bg-white/10 rounded-full text-[10px] shrink-0">3</span> Restart your Discord (Ctrl + R on PC).</li>
-                            </ol>
+                    <h3 class="text-3xl font-extrabold tracking-tight mb-8 flex items-center gap-4">
+                        <span class="text-amber-500">👑</span> 1. Permissions
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="premium-card p-8 rounded-3xl border-t-2 border-t-red-500">
+                            <h4 class="text-xl font-black mb-3 text-red-500">Managers</h4>
+                            <p class="text-sm text-white/50 leading-relaxed">Can access <span class="text-white font-bold">ALL</span> commands including LOA, Announcements, Moderation, and Tickets.</p>
                         </div>
-                        <div class="premium-card p-8 rounded-3xl border-l-4 border-l-blue-500 bg-blue-500/[0.02]">
-                            <h3 class="text-xl font-black mb-4 flex items-center gap-3">
-                                <i class="fas fa-user-shield text-blue-500"></i> Staff Permissions
-                            </h3>
-                            <div class="space-y-4">
-                                <div>
-                                    <p class="text-[10px] font-black text-red-500 uppercase tracking-widest mb-1">Managers</p>
-                                    <p class="text-sm text-white/60">Authorized to use EVERYTHING (LOA, Announcements, Mod, Tickets).</p>
-                                </div>
-                                <div>
-                                    <p class="text-[10px] font-black text-blue-500 uppercase tracking-widest mb-1">Moderators</p>
-                                    <p class="text-sm text-white/60">Authorized to use Moderation & Ticket commands.</p>
-                                </div>
-                            </div>
+                        <div class="premium-card p-8 rounded-3xl border-t-2 border-t-blue-500">
+                            <h4 class="text-xl font-black mb-3 text-blue-500">Moderators</h4>
+                            <p class="text-sm text-white/50 leading-relaxed">Can access <span class="text-white font-bold">Moderation</span> and <span class="text-white font-bold">Ticket</span> commands.</p>
                         </div>
                     </div>
                 </header>
 
-                <!-- Section 1: Announcements -->
-                <section id="announcements" class="mb-20 scroll-mt-24 section-reveal">
-                    <div class="flex items-center justify-between mb-8">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl">📢</div>
-                            <h3 class="text-3xl font-extrabold tracking-tight">1. Announcements</h3>
-                        </div>
-                        <span class="text-[10px] font-black bg-red-500/10 text-red-500 border border-red-500/30 px-3 py-1.5 rounded-full uppercase tracking-widest">Managers Only</span>
+                <!-- Section 2: Warning System -->
+                <section id="warnings" class="mb-20 scroll-mt-24 section-reveal">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl">⚠️</div>
+                        <h3 class="text-3xl font-extrabold tracking-tight">2. Warning System <span class="text-sm font-bold bg-blue-500 text-white px-2 py-1 rounded-lg ml-2 align-middle uppercase tracking-widest">New</span></h3>
                     </div>
                     <div class="premium-card p-8 md:p-10 rounded-[2rem]">
-                        <p class="text-white/50 mb-10 text-lg leading-relaxed">Send an official message to any channel using the bot to keep the community informed.</p>
+                        <p class="text-white/50 mb-8 text-lg leading-relaxed">Tracks user strikes. At <span class="text-white font-bold">3 warnings</span>, an automatic alert is sent to the staff channel.</p>
                         
-                        <div class="grid gap-8">
+                        <div class="space-y-10">
                             <div>
-                                <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em] mb-4">Command</h4>
-                                <div class="command-box">/announce [channel] [message]</div>
+                                <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em] mb-4">Issue a Warning</h4>
+                                <div class="command-box">/warn [user] [reason]</div>
+                                <ul class="mt-4 space-y-2">
+                                    <li class="flex items-center gap-3 text-sm text-white/60"><i class="fas fa-check text-emerald-500 text-[10px]"></i> Logs the warning in the database.</li>
+                                    <li class="flex items-center gap-3 text-sm text-white/60"><i class="fas fa-check text-emerald-500 text-[10px]"></i> DMs the user telling them why.</li>
+                                    <li class="flex items-center gap-3 text-sm text-white/60"><i class="fas fa-check text-emerald-500 text-[10px]"></i> Adds +1 to their strike count.</li>
+                                </ul>
                             </div>
-                            <div class="p-6 bg-white/[0.02] border border-white/5 rounded-2xl">
-                                <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em] mb-3">Example Usage</h4>
-                                <p class="text-white/80 font-medium italic">/announce #general Maintenance is starting now!</p>
+                            
+                            <div class="pt-6 border-t border-white/5">
+                                <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em] mb-4">Manage Warnings</h4>
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <p class="text-xs font-bold text-white/40 mb-2 uppercase">View History</p>
+                                        <div class="command-box">/check_warnings [user]</div>
+                                        <p class="text-[10px] text-white/30 mt-1 italic">Shows dates, mods, and reasons.</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-bold text-white/40 mb-2 uppercase">Remove One / Reset</p>
+                                        <div class="command-box">/unwarn [user]</div>
+                                        <div class="command-box">/clear_warnings [user]</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Section 2: LOA -->
+                <!-- Section 3: Moderation -->
+                <section id="moderation" class="mb-20 scroll-mt-24 section-reveal">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl">🛡️</div>
+                        <h3 class="text-3xl font-extrabold tracking-tight">3. Moderation Tools</h3>
+                    </div>
+                    <div class="premium-card p-1 rounded-[2rem] overflow-hidden mb-8">
+                        <div class="bg-black p-8 md:p-12 rounded-[1.9rem]">
+                            <p class="text-white/40 mb-10 font-medium italic">All actions are logged in the Mod Logs channel.</p>
+                            
+                            <div class="grid lg:grid-cols-2 gap-10">
+                                <div class="space-y-6">
+                                    <div>
+                                        <p class="text-xs font-bold text-white/40 mb-2 uppercase tracking-widest">Ban User (Supports User IDs)</p>
+                                        <div class="command-box">/ban [user] [reason]</div>
+                                        <p class="text-[11px] text-blue-400/80 mt-2 flex gap-2"><i class="fas fa-lightbulb"></i> Tip: You can paste a User ID to ban someone who isn't in the server.</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-bold text-white/40 mb-2 uppercase tracking-widest">Kick User</p>
+                                        <div class="command-box">/kick [user] [reason]</div>
+                                    </div>
+                                </div>
+                                <div class="space-y-6">
+                                    <div>
+                                        <p class="text-xs font-bold text-white/40 mb-2 uppercase tracking-widest">Timeout / Mute</p>
+                                        <div class="command-box">/timeout [user] [minutes] [reason]</div>
+                                        <p class="text-[11px] text-white/40 mt-1 italic">Example: /timeout @User 60 Spamming (1 hour)</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-bold text-white/40 mb-2 uppercase tracking-widest">Purge Chat</p>
+                                        <div class="command-box">/purge [amount]</div>
+                                        <p class="text-[11px] text-white/40 mt-1 italic">Deletes messages instantly.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="premium-card p-8 rounded-3xl bg-blue-500/[0.02] border-l-4 border-l-blue-500">
+                        <h4 class="text-lg font-black mb-4 flex items-center gap-3">
+                            <i class="fas fa-robot text-blue-500"></i> Auto-Moderation
+                        </h4>
+                        <p class="text-sm text-white/50 mb-6 leading-relaxed">The bot passively watches chat for <span class="text-white font-bold">Blacklisted Words</span>.</p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-black/40 p-4 rounded-2xl border border-white/5">
+                                <p class="text-[10px] font-black text-white/30 uppercase tracking-widest mb-1">Action</p>
+                                <p class="text-sm text-white/70">Automatically deletes the message and warns the user in chat.</p>
+                            </div>
+                            <div class="bg-black/40 p-4 rounded-2xl border border-white/5">
+                                <p class="text-[10px] font-black text-white/30 uppercase tracking-widest mb-1">Immunity</p>
+                                <p class="text-sm text-white/70">Staff members can speak freely without triggering the filter.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4: Tickets -->
+                <section id="tickets" class="mb-20 scroll-mt-24 section-reveal">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl">🎫</div>
+                        <h3 class="text-3xl font-extrabold tracking-tight">4. Ticket System</h3>
+                    </div>
+                    <div class="premium-card p-8 md:p-12 rounded-[2rem] border-l-4 border-l-purple-500">
+                        <div class="inline-flex items-center gap-3 px-5 py-2.5 bg-purple-500/10 text-purple-500 border border-purple-500/20 rounded-2xl mb-10">
+                            <i class="fas fa-file-invoice"></i>
+                            <p class="text-sm font-bold">Transcripts are automatically saved as text files</p>
+                        </div>
+
+                        <div class="grid lg:grid-cols-2 gap-12">
+                            <div class="space-y-10">
+                                <div>
+                                    <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em] mb-4">Setup <span class="text-red-500 font-bold ml-1">(Admin Only)</span></h4>
+                                    <div class="command-box">/setup_tickets</div>
+                                    <p class="text-[11px] text-white/40 mt-2 italic">Spawns the "Open Ticket" panel.</p>
+                                </div>
+                                <div>
+                                    <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em] mb-4">Managing Tickets</h4>
+                                    <div class="command-box">/ticket_add [user]</div>
+                                    <div class="command-box">/ticket_remove [user]</div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white/[0.03] border border-white/5 p-8 rounded-[1.8rem]">
+                                <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em] mb-6">Closing Procedure</h4>
+                                <button class="w-full bg-red-600/10 text-red-500 border border-red-500/20 px-6 py-4 rounded-2xl flex items-center justify-center gap-3 cursor-default font-black uppercase tracking-widest text-xs mb-6">
+                                    <i class="fas fa-lock"></i> Close Ticket
+                                </button>
+                                <ol class="space-y-3">
+                                    <li class="flex gap-3 text-xs text-white/60"><span class="w-5 h-5 flex items-center justify-center bg-white/10 rounded-full text-[9px] shrink-0">1</span> Click the red 🔒 button.</li>
+                                    <li class="flex gap-3 text-xs text-white/60"><span class="w-5 h-5 flex items-center justify-center bg-white/10 rounded-full text-[9px] shrink-0">2</span> Bot generates a Transcript File (.txt).</li>
+                                    <li class="flex gap-3 text-xs text-white/60"><span class="w-5 h-5 flex items-center justify-center bg-white/10 rounded-full text-[9px] shrink-0">3</span> File is sent to Ticket Logs channel.</li>
+                                    <li class="flex gap-3 text-xs text-white/60"><span class="w-5 h-5 flex items-center justify-center bg-white/10 rounded-full text-[9px] shrink-0">4</span> Channel is deleted 2 seconds later.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 5: LOA -->
                 <section id="loa" class="mb-20 scroll-mt-24 section-reveal">
                     <div class="flex items-center justify-between mb-8">
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl">🌴</div>
-                            <h3 class="text-3xl font-extrabold tracking-tight">2. Leave of Absence (LOA)</h3>
+                            <h3 class="text-3xl font-extrabold tracking-tight">5. Leave of Absence</h3>
                         </div>
                         <span class="text-[10px] font-black bg-red-500/10 text-red-500 border border-red-500/30 px-3 py-1.5 rounded-full uppercase tracking-widest">Managers Only</span>
                     </div>
-                    <div class="premium-card p-8 md:p-12 rounded-[2rem] border-l-4 border-l-emerald-500">
+                    <div class="premium-card p-8 md:p-12 rounded-[2rem] border-l-4 border-l-emerald-500 bg-emerald-500/[0.01]">
                         <div class="grid lg:grid-cols-2 gap-12">
                             <div class="space-y-8">
-                                <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em]">Start a Leave</h4>
-                                <p class="text-sm text-white/50 mb-4 leading-relaxed">Puts a staff member on leave. The bot tracks time and automatically removes the role when it expires.</p>
+                                <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em]">Start LOA</h4>
                                 <div class="command-box">/loa [user] [duration] [reason]</div>
                                 <div class="flex flex-wrap gap-2">
                                     <span class="bg-emerald-500/5 text-emerald-500 text-[10px] font-black px-4 py-2 rounded-xl border border-emerald-500/20">7d (Days)</span>
                                     <span class="bg-emerald-500/5 text-emerald-500 text-[10px] font-black px-4 py-2 rounded-xl border border-emerald-500/20">2w (Weeks)</span>
                                     <span class="bg-emerald-500/5 text-emerald-500 text-[10px] font-black px-4 py-2 rounded-xl border border-emerald-500/20">1m (Months)</span>
                                 </div>
-                                <p class="text-[11px] text-white/40 italic">Example: /loa @JohnDoe 7d Vacation</p>
+                                <p class="text-xs text-white/50 leading-relaxed">The bot will <span class="text-white font-bold">automatically remove</span> the LOA role when time expires.</p>
                             </div>
-                            <div class="space-y-8 flex flex-col justify-center">
-                                <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em]">End a Leave Early</h4>
+                            <div class="space-y-8">
+                                <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em]">End Early</h4>
                                 <div class="command-box">/endloa [user]</div>
-                                <div class="bg-emerald-500/5 border border-emerald-500/10 p-5 rounded-2xl flex gap-4 items-center">
-                                    <div class="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
-                                        <i class="fas fa-magic text-emerald-500 text-sm"></i>
-                                    </div>
-                                    <p class="text-xs text-white/50 leading-relaxed font-medium">
-                                        Manual role removal is no longer necessary; the bot is fully automated.
-                                    </p>
+                                <div class="p-6 bg-black/40 rounded-2xl border border-white/5">
+                                    <p class="text-xs text-white/40 italic">Use this if a staff member returns before their scheduled date.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Section 3: Moderation Tools -->
-                <section id="moderation" class="mb-20 scroll-mt-24 section-reveal">
+                <!-- Section 6: Announcements -->
+                <section id="announcements" class="mb-20 scroll-mt-24 section-reveal">
                     <div class="flex items-center justify-between mb-8">
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl">🛡️</div>
-                            <h3 class="text-3xl font-extrabold tracking-tight">3. Moderation Tools</h3>
+                            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl">📢</div>
+                            <h3 class="text-3xl font-extrabold tracking-tight">6. Announcements</h3>
                         </div>
-                        <span class="text-[10px] font-black bg-blue-500/10 text-blue-400 border border-blue-400/30 px-3 py-1.5 rounded-full uppercase tracking-widest">All Staff</span>
+                        <span class="text-[10px] font-black bg-red-500/10 text-red-500 border border-red-500/30 px-3 py-1.5 rounded-full uppercase tracking-widest">Managers Only</span>
                     </div>
-                    <div class="premium-card p-1 rounded-[2rem] overflow-hidden">
-                        <div class="bg-black p-8 md:p-12 rounded-[1.9rem] grid lg:grid-cols-2 gap-12">
-                            <div class="space-y-10">
-                                <h4 class="flex items-center gap-3 text-xl font-black text-white">
-                                    <span class="w-1.5 h-6 bg-blue-500 rounded-full"></span> Manual Actions
-                                </h4>
-                                
-                                <div class="space-y-6">
-                                    <div>
-                                        <p class="text-xs font-bold text-white/40 mb-2 uppercase tracking-widest">Kick User</p>
-                                        <div class="command-box">/kick [user] [reason]</div>
-                                    </div>
-                                    <div>
-                                        <p class="text-xs font-bold text-white/40 mb-2 uppercase tracking-widest">Ban User (Hackban)</p>
-                                        <div class="command-box">/ban [user] [reason]</div>
-                                        <p class="text-[11px] text-white/40 mt-2 italic flex gap-2"><i class="fas fa-info-circle text-blue-500"></i> Permanently bans a user. Supports User IDs for members not in the server.</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-xs font-bold text-white/40 mb-2 uppercase tracking-widest">Timeout / Mute</p>
-                                        <div class="command-box">/timeout [user] [minutes] [reason]</div>
-                                        <p class="text-[11px] text-white/40 mt-2 italic">Example: /timeout @User 60 Spamming</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-xs font-bold text-white/40 mb-2 uppercase tracking-widest">Purge / Clear Chat</p>
-                                        <div class="command-box">/purge [amount]</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="space-y-10">
-                                <h4 class="flex items-center gap-3 text-xl font-black text-white">
-                                    <span class="w-1.5 h-6 bg-purple-500 rounded-full"></span> Auto-Moderation
-                                </h4>
-                                <div class="bg-white/[0.03] border border-white/5 rounded-3xl p-8 space-y-8">
-                                    <p class="text-white/60 text-sm leading-relaxed">The bot automatically watches chat for <span class="text-red-400 font-bold border-b border-red-400/30">Blacklisted Words</span>.</p>
-                                    
-                                    <div class="space-y-6">
-                                        <div class="flex gap-4">
-                                            <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0">
-                                                <i class="fas fa-trash-alt text-red-400"></i>
-                                            </div>
-                                            <div>
-                                                <p class="text-sm font-bold text-white">Action</p>
-                                                <p class="text-xs text-white/40 leading-relaxed">Deletes the message and warns the user immediately.</p>
-                                            </div>
-                                        </div>
-                                        <div class="flex gap-4">
-                                            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
-                                                <i class="fas fa-clipboard-list text-blue-400"></i>
-                                            </div>
-                                            <div>
-                                                <p class="text-sm font-bold text-white">Logs</p>
-                                                <p class="text-xs text-white/40 leading-relaxed">Sends an alert to the Server Logs channel.</p>
-                                            </div>
-                                        </div>
-                                        <div class="flex gap-4">
-                                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0">
-                                                <i class="fas fa-crown text-amber-400"></i>
-                                            </div>
-                                            <div>
-                                                <p class="text-sm font-bold text-white">Immunity</p>
-                                                <p class="text-xs text-white/40 leading-relaxed">Staff members are immune to this filter.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="premium-card p-8 md:p-12 rounded-[2rem]">
+                        <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em] mb-4">Send Message</h4>
+                        <div class="command-box">/announce [channel] [message]</div>
+                        <p class="text-sm text-white/50 mt-4 leading-relaxed">Sends a message as the bot to any channel. Useful for keeping official communications consistent.</p>
                     </div>
                 </section>
 
-                <!-- Section 4: Ticket System -->
-                <section id="tickets" class="mb-20 scroll-mt-24 section-reveal">
-                    <div class="flex items-center justify-between mb-8">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl">🎫</div>
-                            <h3 class="text-3xl font-extrabold tracking-tight">4. Ticket System</h3>
-                        </div>
-                    </div>
-                    <div class="premium-card p-8 md:p-12 rounded-[2rem] border-l-4 border-l-amber-500">
-                        <div class="inline-flex items-center gap-3 px-5 py-2.5 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-2xl mb-10">
-                            <i class="fas fa-file-export"></i>
-                            <p class="text-sm font-bold">Transcripts are generated automatically</p>
-                        </div>
-
-                        <div class="grid lg:grid-cols-2 gap-12">
-                            <div class="space-y-10">
-                                <div>
-                                    <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em] mb-4 flex items-center gap-2">
-                                        <i class="fas fa-gear"></i> Setup <span class="text-red-500">Admin Only</span>
-                                    </h4>
-                                    <div class="command-box">/setup_tickets</div>
-                                    <p class="text-[11px] text-white/40 mt-3 italic">Run once to spawn the "Open Ticket" panel.</p>
-                                </div>
-                                
-                                <div>
-                                    <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em] mb-4">Managing Ticket Users</h4>
-                                    <div class="space-y-3">
-                                        <div class="command-box">/ticket_add [user]</div>
-                                        <div class="command-box">/ticket_remove [user]</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bg-white/[0.03] border border-white/5 p-8 rounded-[1.8rem] relative overflow-hidden group">
-                                <h4 class="text-[11px] font-black uppercase text-white/30 tracking-[0.2em] mb-6">Closing a Ticket</h4>
-                                <div class="space-y-6">
-                                    <button class="w-full bg-red-600/10 text-red-500 border border-red-500/20 px-6 py-4 rounded-2xl flex items-center justify-center gap-3 cursor-default font-black uppercase tracking-widest text-xs transition-all group-hover:bg-red-600 group-hover:text-white">
-                                        <i class="fas fa-lock"></i> Close Ticket
-                                    </button>
-                                    <p class="text-sm text-white/50 leading-relaxed text-center">
-                                        Click the red button inside the channel. The bot will save chat history as a text file and send it to <span class="text-white font-bold">Ticket Logs</span> before deletion.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section 5: Logging System -->
+                <!-- Section 7: Logging -->
                 <section id="logging" class="mb-20 scroll-mt-24 section-reveal">
                     <div class="flex items-center gap-4 mb-8">
                         <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-2xl">📂</div>
-                        <h3 class="text-3xl font-extrabold tracking-tight">5. Logging System</h3>
+                        <h3 class="text-3xl font-extrabold tracking-tight">7. Logging Channels</h3>
                     </div>
-                    <p class="text-white/40 mb-10 text-lg">The bot organizes events into three specific channels to keep things efficient.</p>
+                    <p class="text-white/40 mb-10 text-lg">The bot uses nice colored <span class="text-white font-bold">Embeds</span> to track everything. Logs are split into these channels:</p>
                     
                     <div class="grid md:grid-cols-3 gap-6">
                         <div class="premium-card p-8 rounded-3xl border-b-4 border-b-blue-600/40">
@@ -425,11 +414,11 @@
                                 <i class="fas fa-shield-halved text-xl text-blue-500"></i>
                             </div>
                             <h4 class="text-lg font-black mb-3 tracking-tight">Mod Logs</h4>
-                            <p class="text-xs text-white/40 leading-relaxed font-medium">Detailed reports of Bans, Kicks, Timeouts, and Purges.</p>
+                            <p class="text-xs text-white/40 leading-relaxed font-medium">Bans, Kicks, Timeouts, Purges, and Warnings.</p>
                         </div>
-                        <div class="premium-card p-8 rounded-3xl border-b-4 border-b-amber-600/40">
-                            <div class="w-12 h-12 bg-amber-600/10 rounded-xl flex items-center justify-center mb-6">
-                                <i class="fas fa-ticket text-xl text-amber-500"></i>
+                        <div class="premium-card p-8 rounded-3xl border-b-4 border-b-purple-600/40">
+                            <div class="w-12 h-12 bg-purple-600/10 rounded-xl flex items-center justify-center mb-6">
+                                <i class="fas fa-ticket text-xl text-purple-500"></i>
                             </div>
                             <h4 class="text-lg font-black mb-3 tracking-tight">Ticket Logs</h4>
                             <p class="text-xs text-white/40 leading-relaxed font-medium">Ticket Transcripts (Text files) and Open/Close alerts.</p>
@@ -439,7 +428,7 @@
                                 <i class="fas fa-server text-xl text-white/60"></i>
                             </div>
                             <h4 class="text-lg font-black mb-3 tracking-tight">Server Logs</h4>
-                            <p class="text-xs text-white/40 leading-relaxed font-medium">Auto-Mod warnings, Edited/Deleted messages, Joins/Leaves, and LOA updates.</p>
+                            <p class="text-xs text-white/40 leading-relaxed font-medium">Auto-Mod triggers, Deleted/Edited messages, Joins/Leaves, and LOA updates.</p>
                         </div>
                     </div>
                 </section>
@@ -453,50 +442,36 @@
                     
                     <div class="grid gap-6">
                         <div class="premium-card p-8 rounded-3xl group">
-                            <h4 class="text-xl font-black text-white mb-6 flex items-center gap-3">
-                                <span class="w-3 h-3 rounded-full bg-red-500 group-hover:scale-125 transition-transform"></span> "Interaction Failed"?
+                            <h4 class="text-xl font-black text-white mb-4 flex items-center gap-3">
+                                <span class="w-3 h-3 rounded-full bg-red-500"></span> "Interaction Failed"
                             </h4>
-                            <div class="pl-6">
-                                <p class="text-sm text-white/50 leading-relaxed font-medium">
-                                    The bot is likely offline or restarting. Check the console or status channel if available.
-                                </p>
-                            </div>
+                            <p class="text-sm text-white/50 leading-relaxed pl-6">The bot is likely restarting. Please wait <span class="text-white font-bold">30 seconds</span> and try again.</p>
                         </div>
 
                         <div class="premium-card p-8 rounded-3xl group">
-                            <h4 class="text-xl font-black text-white mb-6 flex items-center gap-3">
-                                <span class="w-3 h-3 rounded-full bg-red-500 group-hover:scale-125 transition-transform"></span> "Permission Denied"?
+                            <h4 class="text-xl font-black text-white mb-4 flex items-center gap-3">
+                                <span class="w-3 h-3 rounded-full bg-red-500"></span> "Permission Denied"
                             </h4>
-                            <div class="grid md:grid-cols-2 gap-8 pl-6">
-                                <div>
-                                    <p class="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-2">For Commands</p>
-                                    <p class="text-sm text-white/50 leading-relaxed font-medium">You might not have the correct Manager/Mod role required for that slash command.</p>
-                                </div>
-                                <div>
-                                    <p class="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-2">For Actions</p>
-                                    <p class="text-sm text-white/50 leading-relaxed font-medium">Ensure the <span class="text-white font-bold">Bot's Role</span> is higher than the target user in Server Settings.</p>
-                                </div>
-                            </div>
+                            <p class="text-sm text-white/50 leading-relaxed pl-6">You do not have the required <span class="text-white font-bold">Manager</span> or <span class="text-blue-400 font-bold">Mod</span> role to use this command.</p>
                         </div>
 
                         <div class="premium-card p-8 rounded-3xl group">
-                            <h4 class="text-xl font-black text-white mb-6 flex items-center gap-3">
-                                <span class="w-3 h-3 rounded-full bg-red-500 group-hover:scale-125 transition-transform"></span> Commands not showing up?
+                            <h4 class="text-xl font-black text-white mb-4 flex items-center gap-3">
+                                <span class="w-3 h-3 rounded-full bg-red-500"></span> Announcement Failed
                             </h4>
-                            <div class="pl-6">
-                                <p class="text-sm text-white/50 leading-relaxed font-medium">
-                                    Run the <span class="text-white font-mono font-bold bg-white/10 px-2 py-0.5 rounded">!sync</span> command and restart your Discord app (Ctrl + R).
-                                </p>
-                            </div>
+                            <p class="text-sm text-white/50 leading-relaxed pl-6">The bot does not have permission to <span class="text-white font-bold">"Send Messages"</span> in the destination channel. Check the channel's specific permissions settings.</p>
+                        </div>
+
+                        <div class="premium-card p-8 rounded-3xl group">
+                            <h4 class="text-xl font-black text-white mb-4 flex items-center gap-3">
+                                <span class="w-3 h-3 rounded-full bg-red-500"></span> Commands Missing?
+                            </h4>
+                            <p class="text-sm text-white/50 leading-relaxed pl-6">Run the <span class="text-white font-mono font-bold bg-white/10 px-2 py-0.5 rounded">!sync</span> command in any chat and <span class="text-white font-bold underline">restart</span> your Discord app.</p>
                         </div>
                     </div>
                 </section>
 
                 <footer class="text-center pb-20 border-t border-white/5 pt-16">
-                    <div class="flex justify-center gap-6 mb-8 text-white/20">
-                        <i class="fab fa-discord hover:text-blue-500 transition-colors cursor-pointer"></i>
-                        <i class="fas fa-shield-cat hover:text-purple-500 transition-colors cursor-pointer"></i>
-                    </div>
                     <p class="text-[11px] font-black text-white/20 uppercase tracking-[0.3em]">&copy; 2024 Team Shadow Headquarters. Internal Use Only.</p>
                 </footer>
             </div>
